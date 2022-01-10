@@ -18,7 +18,6 @@ def index():
 
 @api.route('/webex-webhook', methods=['POST'])
 def webex_webhook():
-    print('Received webhook')
     webhook_data = request.get_json()
     print(str(webhook_data['data']))
     return ""
@@ -74,11 +73,7 @@ def get_heroku_url(api_endpoint='/webex_webhook'):
     if not app_name:
         raise Exception(f'App name not set? "{app_name}"')
 
-    app_port = environ.get('PORT')
-    if (not app_port) or (app_port == 443):
-        return f'https://{app_name}.herokuapp.com{api_endpoint}'
-    else:
-        return f'https://{app_name}.herokuapp.com:{app_port}{api_endpoint}'
+    return f'https://{app_name}.herokuapp.com{api_endpoint}'
 
 
 def validate_webhook_registration(room_title):
