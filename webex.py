@@ -69,7 +69,7 @@ def get_webex_webhook(webhook_name) -> Webhook:
     return all_webhooks[0] if len(all_webhooks) else None
 
 
-def get_heroku_url(api_endpoint='/webex_webhook'):
+def get_heroku_url(api_endpoint='/webex-webhook'):
     app_name = environ.get('HEROKU_APP_NAME')
     if not app_name:
         raise Exception(f'App name not set? "{app_name}"')
