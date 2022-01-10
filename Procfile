@@ -1,1 +1,1 @@
-web: gunicorn webex:api
+web: gunicorn "webex:application()"
