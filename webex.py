@@ -18,8 +18,10 @@ def index():
 
 @api.route('/webex-webhook', methods=['POST'])
 def webex_webhook():
+    print('Received webhook')
     webhook_data = request.get_json()
     print(str(webhook_data['data']))
+    return ""
 
 
 def get_webex_room_id(room_title):
