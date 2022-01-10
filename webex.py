@@ -19,7 +19,8 @@ def index():
 @api.route('/webex-webhook', methods=['POST'])
 def webex_webhook():
     webhook_data = request.get_json()
-    print(str(webhook_data['data']))
+    print(str(request))
+    print(str(webhook_data))
     return ""
 
 
