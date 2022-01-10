@@ -18,10 +18,10 @@ def index():
 
 @api.route('/webex-webhook', methods=['POST'])
 def webex_webhook():
-    webhook_data = request.get_json()
+    webhook_data = request.json
     print(str(request))
     print(str(webhook_data))
-    return ""
+    return "<h1>Received</h1>"
 
 
 def get_webex_room_id(room_title):
@@ -131,4 +131,4 @@ def application():
 if __name__ == '__main__':
     application()
     api.debug = True
-    api.run()
+    api.run(host='127.0.0.1', port=5001)
