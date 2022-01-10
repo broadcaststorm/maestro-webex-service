@@ -15,6 +15,8 @@
 - [Gunicorn 20.1.x](https://docs.gunicorn.org/en/latest/index.html)
 - [Webex Messaging SDK](https://webexteamssdk.readthedocs.io/en/latest/index.html)
 
+- [Heroku CLI](https://devcenter.heroku.com/categories/command-line)
+
 ## Environment Variables
 
 - WEBEX_TEAMS_ACCESS_TOKEN: API Access Token specific to Bot for Webex Messaging
