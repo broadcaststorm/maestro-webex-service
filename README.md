@@ -40,6 +40,8 @@ details about the specified scenario.
 ## Environment Variables
 
 - WEBEX_TEAMS_ACCESS_TOKEN: API Access Token specific to Bot for Webex Messaging
+- SECRETS_DIR: Location of the access token text file to populated the env var
+- WEBEX_TEAMS_ROOM_TITLE: Title of the Webex Messaging room for the lab management
 - FLASK_ENV: development, production, etc.
 - FLASK_APP: application for the web server environment (webex)
 
