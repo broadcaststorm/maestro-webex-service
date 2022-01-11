@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from os import environ
-
 from webexteamssdk import WebexTeamsAPI
 from webexteamssdk.models.immutable import Webhook, Room, Message
 from maestro import process_command_message
