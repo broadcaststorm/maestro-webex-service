@@ -35,7 +35,7 @@ def help():
     for resource in supported_commands:
         for cmds in supported_commands[resource]:
             lines.append(
-                f'{resource} {cmds} [args]'
+                f'\t{resource} {cmds} [args]'
             )
 
     return '\n'.join(lines)
@@ -91,11 +91,16 @@ def process_command_message(cmd_message: Message):
 
         return
 
-    send_webex_message(
-        roomId = cmd_message.roomId,
-        parentId = cmd_message.id,
-        text = f'Received resource {words[0]} with cmd/args {words[1:]}'
-    )
+    if len(words) == 1:
+        error_message = f'No command provided for resource {words[0]}'
+
+        send_webex_message(
+            roomId = cmd_message.roomId,
+            parentId = cmd_message.id,
+            text = error_message
+        )
+
+        return
 
     if words[1] not in supported_commands[words[0]]:
         error_message = f'Command {words[1]} not recognized for resource {words[0]}'
@@ -107,6 +112,12 @@ def process_command_message(cmd_message: Message):
         )
 
         return
+
+    send_webex_message(
+        roomId = cmd_message.roomId,
+        parentId = cmd_message.id,
+        text = f'Received resource {words[0]} with cmd/args {words[1:]}'
+    )
 
     # Call the function pointed to by the dictionary
     command_parse = supported_commands[words[0]][words[1]]
