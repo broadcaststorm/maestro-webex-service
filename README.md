@@ -1,5 +1,25 @@
 # Maestro Bot UI
 
+## Usage Information
+
+This UI is a Webex Bot that needs to be added to a Webex space/room via
+its email address (listed below).
+
+### Commands for the bot
+
+All commands should be prefixed with an '@' mention to "Lab Maestro" -
+which will get substituted to **Lab** in the client to show it is
+actually a mention. This is normal.
+
+- **@Lab project list [name]**: produces a list of available projects
+in the lab.  If [name] is optionally provided, the command will give
+details about the specified project.
+
+- **@Lab scenario list [name]**: produces a list of available scenarios
+in the lab.  If [name] is optionally provided, the command will give
+details about the specified scenario.
+
+
 ## Bot Information
 
 - Name: Lab Maestro
@@ -22,6 +42,12 @@
 - WEBEX_TEAMS_ACCESS_TOKEN: API Access Token specific to Bot for Webex Messaging
 - FLASK_ENV: development, production, etc.
 - FLASK_APP: application for the web server environment (webex)
+
+## Caveats
+
+This bot is currently being written for a focused, single purpose back end
+service. Only a single instance dedicated to a single space is being
+supported at this time.
 
 ## Roadmap
 
