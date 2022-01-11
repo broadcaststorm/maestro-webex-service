@@ -2,6 +2,7 @@
 
 from webexteamssdk import Message
 
+
 # TODO: Convert this hack to click or typer
 def project_list():
     pass
@@ -36,11 +37,11 @@ def help():
 
 def process_command_message(cmd_message: Message):
     """
-    
+
     Process the command messages sent to the bot and received here via the
     Webex Teams webhook.
 
-    :param webexteamssdk.Message cmd_message: The message object to be processed
+    :param webexteamssdk.Message cmd_message: The message obj to be processed
     :return: roomId, parentId, message for return message to the teams room.
 
     """
@@ -60,7 +61,8 @@ def process_command_message(cmd_message: Message):
 
     # Pattern:  resource action arguments
     if words[0] not in supported_commands:
-        error_message = f'Resource {words[0]} not recognized from: ' + str(cmd_message.text[3:])
+        error_message = f'Resource {words[0]} not recognized from: '
+        error_message += str(cmd_message.text[3:])
 
         return (
             cmd_message.roomId,
@@ -85,7 +87,6 @@ def process_command_message(cmd_message: Message):
             cmd_message.id,
             error_message
         )
-
 
     # Call the function pointed to by the dictionary
     command_parse = supported_commands[words[0]][words[1]]

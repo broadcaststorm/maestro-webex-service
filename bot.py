@@ -9,6 +9,7 @@ from webex import process_webhook_payload
 
 api = Flask(__name__)
 
+
 @api.route('/', methods=['GET'])
 def index():
     app_name = environ.get('HEROKU_APP_NAME')
