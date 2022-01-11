@@ -1,1 +1,1 @@
-web: gunicorn "webex:application()"
+web: gunicorn "bot:application()"
