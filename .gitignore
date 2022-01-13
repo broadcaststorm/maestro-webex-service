@@ -1,3 +1,6 @@
+# botUI ignores.  For safety sake, ignore token.txt in case it gets added
+token.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
