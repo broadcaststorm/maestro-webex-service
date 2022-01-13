@@ -2,13 +2,9 @@
 
 from webexteamssdk import WebexTeamsAPI
 from webexteamssdk.models.immutable import Webhook, Room, Message
-from maestro import process_command_message
+from relay import relay_command_message
 
 webex = WebexTeamsAPI()
-
-
-def send_webex_message(roomId, parentId, text):
-    webex.messages.create(roomId=roomId, parentId=parentId, text=text)
 
 
 def process_webhook_payload(payload):
@@ -23,12 +19,17 @@ def process_webhook_payload(payload):
     # Go fetch the message related to the webhook
     message: Message = webex.messages.get(payload['data']['id'])
 
-    # Parse and process the message
-    roomId, parentId, result = process_command_message(message)
+    # Send the message downstream via websocket to get parsed
+    return_message = relay_command_message(message.text)
 
-    webex.messages.create(roomId=roomId, parentId=parentId, text=result)
+    webex.messages.create(
+        roomId=message.roomId, parentId=message.parentId, text=return_message
+    )
 
     return
+
+
+# Code below is for initializing/updating the WebEx webhook for this bot
 
 
 def get_webex_room_id(room_title):

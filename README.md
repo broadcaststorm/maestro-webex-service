@@ -36,6 +36,7 @@ details about the specified scenario.
 - [Webex Messaging SDK](https://webexteamssdk.readthedocs.io/en/latest/index.html)
 
 - [Heroku CLI](https://devcenter.heroku.com/categories/command-line)
+- [Websockets](https://websockets.readthedocs.io/en/stable/)
 
 ## Environment Variables
 
