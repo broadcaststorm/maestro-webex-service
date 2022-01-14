@@ -16,5 +16,5 @@ fi
 heroku config:set WEBEX_TEAMS_ACCESS_TOKEN=${WEBEX_TEAMS_ACCESS_TOKEN}
 # Setting WEBEX_TEAMS_ACCESS_TOKEN and restarting ... done, v5
 
-heroku config:set WEBEX_TEAMS_ROOM_TITLE="${WEBEX_TEAMS_ROOT_TITLE}"
+heroku config:set WEBEX_TEAMS_ROOM_TITLE="${WEBEX_TEAMS_ROOM_TITLE}"
 # Setting WEBEX_TEAMS_ROOM_TITLE and restarting ... done, v6
