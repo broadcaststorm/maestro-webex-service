@@ -4,7 +4,7 @@
 from os import environ
 
 
-def get_heroku_web_url(api_endpoint='/webex-webhook'):
+def get_web_url(api_endpoint='/webex-webhook'):
     app_name = environ.get('HEROKU_APP_NAME')
     if not app_name:
         raise Exception(f'App name not set? "{app_name}"')
