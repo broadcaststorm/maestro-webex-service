@@ -16,7 +16,7 @@ import logging
 import websockets
 from websockets import WebSocketServerProtocol
 
-import wsconfig
+import heroku
 
 
 logging.basicConfig(level=logging. INFO)
@@ -24,6 +24,7 @@ logging.basicConfig(level=logging. INFO)
 
 class Server:
     clients = set()
+
     async def register(self, ws: WebSocketServerProtocol) -> None:
         self.clients.add(ws)
         logging.info(f'{ws.remote_address} connects.')
@@ -53,9 +54,9 @@ class Server:
 if __name__ == '__main__':
     server = Server()
     start_server = websockets.serve(
-        server.ws_handler, wsconfig.ws_host, wsconfig.ws_port
+        server.ws_handler, heroku.get_ws_host(), heroku.get_ws_port()
     )
-    
+
     loop = asyncio.get_event_loop()
     loop.run_until_complete(start_server)
     loop.run_forever()

@@ -3,7 +3,7 @@
 import asyncio
 import websockets
 
-import wsconfig
+import heroku
 
 
 async def produce(
@@ -17,8 +17,11 @@ async def produce(
 
 
 def relay_command_message(message: str):
+    ws_host = heroku.get_ws_host()
+    ws_port = heroku.get_ws_port()
+
     return_comms = asyncio.run(
-        produce(message, host=wsconfig.ws_host, port=wsconfig.ws_port)
+        produce(message, host=ws_host, port=ws_port)
     )
 
     return return_comms

@@ -7,6 +7,9 @@ from flask import request
 from webex import validate_webhook_registration
 from webex import process_webhook_payload
 
+import heroku
+
+
 api = Flask(__name__)
 
 
@@ -23,17 +26,10 @@ def webex_webhook():
     return "<h1>Received</h1>"
 
 
-def get_heroku_url(api_endpoint='/webex-webhook'):
-    app_name = environ.get('HEROKU_APP_NAME')
-    if not app_name:
-        raise Exception(f'App name not set? "{app_name}"')
-
-    return f'https://{app_name}.herokuapp.com{api_endpoint}'
-
-
 def application():
     room_title = environ.get('WEBEX_TEAMS_ROOM_TITLE')
-    validate_webhook_registration(room_title, get_heroku_url())
+    webhook_url = heroku.get_web_url()
+    validate_webhook_registration(room_title, webhook_url)
     return api
 
 
