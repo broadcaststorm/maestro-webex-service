@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 
-from http.client import HTTPException
 import os
 from copy import deepcopy
 from typing import List
+
+from fastapi import HTTPException
 
 from models import MessageSummary
 
