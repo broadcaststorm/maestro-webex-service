@@ -52,9 +52,11 @@ class Server:
 
 
 if __name__ == '__main__':
+    print('Starting web socket server...')
+
     server = Server()
     start_server = websockets.serve(
-        server.ws_handler, heroku.get_ws_host(), heroku.get_ws_port()
+        server.ws_handler, '', heroku.get_local_port()
     )
 
     loop = asyncio.get_event_loop()

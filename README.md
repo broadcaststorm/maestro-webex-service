@@ -56,3 +56,11 @@ supported at this time.
 
 - Black formatter
 - Precommit hooks for flake8 and black
+
+## Related Information
+
+- [Python Websocket GitHub](https://github.com/aaugustin/websockets)
+- [Python websocket-client w/ proxy support](https://websocket-client.readthedocs.io/en/latest/), [GitHub](https://github.com/websocket-client/websocket-client)
+- [Heroku Runtime Principles](https://devcenter.heroku.com/articles/runtime-principles)
+- [Heroku Networking/Routing](https://devcenter.heroku.com/articles/http-routing)
+- [Heroku Websockets Example w/ Redis](https://devcenter.heroku.com/articles/python-websockets), [GitHub](https://github.com/heroku-examples/python-websockets-chat)
