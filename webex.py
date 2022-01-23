@@ -7,17 +7,10 @@ from webexteamssdk import WebexTeamsAPI
 from webexteamssdk.models.immutable import Webhook, Room, Message
 
 
-def process_webhook_payload(webex, relay, payload):
-
-    # For this MVP, we are focused on Webhooks for created messages to the bot
-    if payload['resource'] != 'messages':
-        return
-
-    if payload['event'] != 'created':
-        return
+def process_webhook_payload(webex: WebexTeamsAPI, relay, msg_id: int):
 
     # Go fetch the message related to the webhook
-    message: Message = webex.messages.get(payload['data']['id'])
+    message: Message = webex.messages.get(msg_id)
 
     # Send the message downstream to get parsed. Rely on downstream
     # to communicate any results (given this could be stored messages)
