@@ -7,16 +7,16 @@ from flask import request
 import webex
 import heroku
 
+rest_api = Flask(__name__)
+
 
 def application():
-    global rest_api
     global webex_api
 
     global app_version
     global app_name
     global app_webhook_url
 
-    rest_api = Flask(__name__)
     app_version = '0.1.0'
 
     # Heroku setup

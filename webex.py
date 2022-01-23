@@ -139,6 +139,6 @@ def initialization(webhook_url: str):
         raise Exception('Room "{webex_room_title}" not found.')
 
     # Update the webhook information when we startup the bot service
-    validate_webhook_registration(webex_room_title, webhook_url)
+    validate_webhook_registration(webex_api, webex_room_title, webhook_url)
 
     return webex_api, webex_room_title, webex_room_id
