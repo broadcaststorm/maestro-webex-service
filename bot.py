@@ -4,37 +4,45 @@ from os import environ
 from flask import Flask
 from flask import request
 
-from webex import validate_webhook_registration
-from webex import process_webhook_payload
-
+import webex
 import heroku
 
 
-api = Flask(__name__)
+def application():
+    global rest_api
+    global webex_api
+
+    global app_version
+    global app_name
+    global app_webhook_url
+
+    rest_api = Flask(__name__)
+    app_version = '0.1.0'
+
+    # Heroku setup
+    app_name, app_webhook_url = heroku.initialization()
+
+    # WebEx setup
+    webex_api = webex.initialization(app_webhook_url)
+
+    return rest_api
 
 
-@api.route('/', methods=['GET'])
+@rest_api.route('/', methods=['POST'])
+def webex_webhook():
+    webhook_data = request.json
+    webex.process_webhook_payload(webex_api, webhook_data)
+    return "<h1>Received</h1>"
+
+
+@rest_api.route('/', methods=['GET'])
 def index():
     app_name = environ.get('HEROKU_APP_NAME')
     return f'App {app_name}'
 
 
-@api.route('/webex-webhook', methods=['POST'])
-def webex_webhook():
-    webhook_data = request.json
-    process_webhook_payload(webhook_data)
-    return "<h1>Received</h1>"
-
-
-def application():
-    room_title = environ.get('WEBEX_TEAMS_ROOM_TITLE')
-    webhook_url = heroku.get_web_url()
-    validate_webhook_registration(room_title, webhook_url)
-    return api
-
-
 # This block is for local Flask execution
 if __name__ == '__main__':
-    application()
+    api = application()
     api.debug = True
     api.run(host='127.0.0.1', port=5001)
