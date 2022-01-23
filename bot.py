@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
 
-from os import environ
 from flask import Flask
 from flask import request
 
 import webex
 import heroku
+from relay import message_service
 
+
+# Global Variable Setup
 rest_api = Flask(__name__)
+webex_api = None
+relay_service = None
 
 
 def application():
     global webex_api
+    global relay_service
 
     global app_version
     global app_name
@@ -28,17 +33,24 @@ def application():
     return rest_api
 
 
-@rest_api.route('/', methods=['POST'])
-def webex_webhook():
-    webhook_data = request.json
-    webex.process_webhook_payload(webex_api, webhook_data)
-    return "<h1>Received</h1>"
-
-
-@rest_api.route('/', methods=['GET'])
+@rest_api.route('/', methods=["GET", "POST"])
 def index():
-    app_name = environ.get('HEROKU_APP_NAME')
-    return f'App {app_name}'
+    global relay_service
+    global app_name
+
+    if request.method == "POST":
+        webhook_data = request.json
+        webex.process_webhook_payload(webex_api, relay_service, webhook_data)
+        return "<h1>Received</h1>"
+
+    if request.method == "GET":
+        return f'App {app_name}'
+
+
+@rest_api.route('/version', methods=["GET"])
+def version():
+    global app_version
+    return str(app_version)
 
 
 # This block is for local Flask execution
