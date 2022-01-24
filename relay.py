@@ -79,7 +79,9 @@ class message_store(message_processor):
         return start, end
 
     def message_count(self) -> int:
-        start, end = self.get_indexes()
+        start = self.get_start()
+        end = self.get_end()
+
         return int(end) - int(start)
 
     def process_message(self, msg_id, msg_text, msg_email):
