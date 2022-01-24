@@ -8,23 +8,20 @@ from webexteamssdk import WebexTeamsAPI
 from webexteamssdk.models.immutable import Webhook, Room, Message
 
 
-def process_webhook_payload(webex: WebexTeamsAPI, relay, msg_id: int):
+def process_webhook_payload(webex: WebexTeamsAPI, relay, msg_id: str):
 
     # Go fetch the message related to the webhook
-    logging.info(f'Message ID: {msg_id}')
-    logging.info(str(webex))
-
     message: Message = webex.messages.get(msg_id)
 
     # Send the message downstream to get parsed. Rely on downstream
     # to communicate any results (given this could be stored messages)
     relay.process_message(
-        msg_id=int(message.id),
-        msg_text=str(message.text),
-        msg_email=str(message.personEmail)
+        msg_id=message.id,
+        msg_text=message.text,
+        msg_email=message.personEmail
     )
 
-    logging.info(f'Finished storing message: {message.txt}')
+    logging.info(f'Finished storing message: {message.text}')
     return
 
 
