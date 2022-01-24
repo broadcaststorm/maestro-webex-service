@@ -134,4 +134,4 @@ def initialization(webhook_url: str):
     # Update the webhook information when we startup the bot service
     validate_webhook_registration(webex_api, webex_room_title, webhook_url)
 
-    return webex_api, webex_room_title, webex_room_id
+    return webex_api
