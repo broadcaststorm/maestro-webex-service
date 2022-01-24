@@ -124,7 +124,7 @@ def initialization(webhook_url: str):
         raise Exception('WEBEX_TEAMS_ACCESS_TOKEN env var is required.')
 
     # Load up WebexTeams API instance
-    webex_api = WebexTeamsAPI()
+    webex_api = WebexTeamsAPI(wait_on_rate_limit=True)
 
     # Does the room exist?
     webex_room_id = get_webex_room_id(webex_api, webex_room_title)
