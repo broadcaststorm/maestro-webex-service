@@ -24,6 +24,9 @@ class message_processor:
     def get_all_messages(self) -> List[MessageSummary]:
         pass
 
+    def message_count(self) -> int:
+        pass
+
 
 class message_store(message_processor):
     """
@@ -75,6 +78,10 @@ class message_store(message_processor):
 
         return start, end
 
+    def message_count(self) -> int:
+        start, end = self.get_indexes()
+        return int(end) - int(start)
+
     def process_message(self, msg_id, msg_text, msg_email):
         end = self.get_end()
         index = str(int(end) + 1)
@@ -115,6 +122,9 @@ class message_store(message_processor):
 class message_buffer(message_processor):
     def __init__(self):
         self.messages: List[MessageSummary] = list()
+
+    def message_count(self):
+        return len(self.messages)
 
     def process_message(self, msg_id, msg_text, msg_email):
         self.messages.append(
