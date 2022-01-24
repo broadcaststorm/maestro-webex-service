@@ -2,6 +2,7 @@
 
 
 import os
+import logging
 from copy import deepcopy
 from typing import List
 
@@ -10,7 +11,18 @@ from fastapi import HTTPException
 from models import MessageSummary
 
 
-class message_buffer:
+class message_processor:
+    def process_message(self, msg_id, msg_text, msg_email):
+        pass
+
+    def get_next_message(self) -> MessageSummary:
+        pass
+
+    def get_all_messages(self) -> List[MessageSummary]:
+        pass
+
+
+class message_buffer(message_processor):
     def __init__(self):
         self.messages: List[MessageSummary] = list()
 
@@ -19,7 +31,11 @@ class message_buffer:
             MessageSummary(id=msg_id, text=msg_text, email=msg_email)
         )
 
+        logging.info('Message buffer size: ', len(self.messages))
+
     def get_next_message(self) -> MessageSummary:
+        logging.info('Message buffer size: ', len(self.messages))
+
         if len(self.messages) == 0:
             raise HTTPException(
                 status_code=404,
@@ -29,6 +45,8 @@ class message_buffer:
         return self.messages.pop(0)
 
     def get_all_messages(self) -> List[MessageSummary]:
+        logging.info('Message buffer size: ', len(self.messages))
+
         if len(self.messages) == 0:
             raise HTTPException(
                 status_code=404,

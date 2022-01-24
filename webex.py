@@ -7,8 +7,12 @@ from os import environ
 from webexteamssdk import WebexTeamsAPI
 from webexteamssdk.models.immutable import Webhook, Room, Message
 
+from relay import message_processor
 
-def process_webhook_payload(webex: WebexTeamsAPI, relay, msg_id: str):
+
+def process_webhook_payload(
+    webex: WebexTeamsAPI, relay: message_processor, msg_id: str
+):
 
     # Go fetch the message related to the webhook
     message: Message = webex.messages.get(msg_id)
