@@ -37,6 +37,9 @@ details about the specified scenario.
 
 - [Heroku CLI](https://devcenter.heroku.com/categories/command-line)
 - [Websockets](https://websockets.readthedocs.io/en/stable/)
+- [Redis Commands](https://redis.io/commands)
+- [Redis Python Module](https://redis.readthedocs.io/en/latest/)
+- [Heroku/Redis](https://devcenter.heroku.com/articles/connecting-heroku-redis#connecting-in-python)
 
 ## Environment Variables
 

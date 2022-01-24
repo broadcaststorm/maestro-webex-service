@@ -18,3 +18,6 @@ heroku config:set WEBEX_TEAMS_ACCESS_TOKEN=${WEBEX_TEAMS_ACCESS_TOKEN}
 
 heroku config:set WEBEX_TEAMS_ROOM_TITLE="${WEBEX_TEAMS_ROOM_TITLE}"
 # Setting WEBEX_TEAMS_ROOM_TITLE and restarting ... done, v6
+
+heroku config:set WEBEX_RELAY_TYPE="REDIS"
+# Setting WEBEX_RELAY_TYPE and restarting ⬢ safe-tundra-80304... done, v44
