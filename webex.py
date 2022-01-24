@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+import logging
 from os import environ
 
 from webexteamssdk import WebexTeamsAPI
@@ -10,6 +11,9 @@ from webexteamssdk.models.immutable import Webhook, Room, Message
 def process_webhook_payload(webex: WebexTeamsAPI, relay, msg_id: int):
 
     # Go fetch the message related to the webhook
+    logging.info(f'Message ID: {msg_id}')
+    logging.info(str(webex))
+
     message: Message = webex.messages.get(msg_id)
 
     # Send the message downstream to get parsed. Rely on downstream
@@ -20,6 +24,7 @@ def process_webhook_payload(webex: WebexTeamsAPI, relay, msg_id: int):
         msg_email=str(message.personEmail)
     )
 
+    logging.info(f'Finished storing message: {message.txt}')
     return
 
 

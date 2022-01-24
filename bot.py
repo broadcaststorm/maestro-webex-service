@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+import logging
 from typing import List
 
 from fastapi import FastAPI, HTTPException
@@ -31,6 +32,9 @@ def application():
 
     # Message Relay setup
     relay_service = relay.initialization()
+
+    # Set logging level
+    logging.basicConfig(level=logging.INFO)
 
     return api
 
