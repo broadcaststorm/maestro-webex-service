@@ -49,7 +49,7 @@ class message_store(message_processor):
         return self.redis.set('/counter/start', value)
 
     def set_end(self, value):
-        return self.redis.get('/counter/end', value)
+        return self.redis.set('/counter/end', value)
 
     def get_start(self):
         return self.redis.get('/counter/start')
