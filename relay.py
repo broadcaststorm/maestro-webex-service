@@ -23,7 +23,7 @@ class message_buffer:
         if len(self.messages) == 0:
             raise HTTPException(
                 status_code=404,
-                status_message='Message List Empty'
+                detail='Message List Empty'
             )
 
         return self.messages.pop(0)
@@ -32,7 +32,7 @@ class message_buffer:
         if len(self.messages) == 0:
             raise HTTPException(
                 status_code=404,
-                status_message='Message List Empty'
+                detail='Message List Empty'
             )
 
         msgs = deepcopy(self.messages)
