@@ -12,14 +12,6 @@ def get_local_port():
     return str(local_port)
 
 
-def get_web_url(api_endpoint='/webex-webhook'):
-    app_name = environ.get('HEROKU_APP_NAME')
-    if not app_name:
-        raise Exception(f'App name not set? "{app_name}"')
-
-    return f'https://{app_name}.herokuapp.com{api_endpoint}'
-
-
 def get_ws_host():
     ws_host = environ.get('WEBEX_RELAY_HOST')
     if not ws_host:
@@ -41,3 +33,13 @@ def get_ws_url():
     ws_port = get_ws_port()
 
     return f'ws://{ws_host}:{ws_port}/'
+
+
+def initialization():
+    app_name = environ.get('HEROKU_APP_NAME')
+    if not app_name:
+        raise Exception(f'App name not set? "{app_name}"')
+
+    webhook_url = f'https://{app_name}.herokuapp.com/'
+
+    return app_name, webhook_url
