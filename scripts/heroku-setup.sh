@@ -19,3 +19,4 @@ else
 fi
 
 heroku labs:enable runtime-dyno-metadata -a ${HEROKU_APP_NAME}
+heroku addons:create heroku-redis:hobby-dev
