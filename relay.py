@@ -46,25 +46,25 @@ class message_store(message_processor):
         self.set_end('0')
 
     def set_start(self, value):
-        return self.redis.set(name='/counter/start', value=value)
+        return self.redis.set('/counter/start', value)
 
     def set_end(self, value):
-        return self.redis.get(name='/counter/end', value=value)
+        return self.redis.get('/counter/end', value)
 
     def get_start(self):
-        return self.redis.get(name='/counter/start')
+        return self.redis.get('/counter/start')
 
     def get_end(self):
-        return self.redis.get(name='/counter/end')
+        return self.redis.get('/counter/end')
 
     def set_message(self, index, value):
         key = f'/message/{index}'
-        self.redis.set(name=key, value=value)
+        self.redis.set(key, value)
         logging.info(f'{key}: {value}')
 
     def get_message(self, index):
         key = f'/message/{index}'
-        return self.redis.get(name=key)
+        return self.redis.get(key)
 
     def get_indexes(self):
         start = int(self.get_start())
