@@ -35,6 +35,10 @@ def application():
     return api
 
 
+# Entry point for gunicorn/uvicorn
+app = application()
+
+
 @api.get('/')
 def get_app_name():
     global app_name
@@ -81,8 +85,7 @@ def get_next_messages():
     return relay_service.get_next_message()
 
 
-# This block is for local Flask execution
+# This block is for local execution
 if __name__ == '__main__':
-    api = application()
-    api.debug = True
-    api.run(host='127.0.0.1', port=5001)
+    app.debug = True
+    app.run(host='127.0.0.1', port=5001)
