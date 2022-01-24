@@ -1,2 +1,2 @@
-web: gunicorn "bot:application()"
+web: uvicorn bot:app
 

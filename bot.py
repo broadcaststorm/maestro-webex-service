@@ -42,7 +42,7 @@ app = application()
 @api.get('/')
 def get_app_name():
     global app_name
-    return f'App {app_name}'
+    return { "message": f'App {app_name}' }
 
 
 @api.post('/')
