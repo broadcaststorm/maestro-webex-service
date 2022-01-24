@@ -1,2 +1,2 @@
-web: uvicorn bot:app
+web: uvicorn --port $PORT bot:app
 
