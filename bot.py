@@ -62,7 +62,7 @@ def post_webhook_data(event: WebhookEvent):
         return
 
     try:
-        logging.info(f'Message buffer size: {len(relay_service.messages)}')
+        logging.info(f'Bot: Message buffer size: {len(relay_service.messages)}')
         webex.process_webhook_payload(webex_api, relay_service, event.data.id)
     except Exception as err:
         print(err)

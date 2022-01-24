@@ -31,10 +31,10 @@ class message_buffer(message_processor):
             MessageSummary(id=msg_id, text=msg_text, email=msg_email)
         )
 
-        logging.info(f'Message buffer size: {len(self.messages)}')
+        logging.info(f'Proc: Message buffer size: {len(self.messages)}')
 
     def get_next_message(self) -> MessageSummary:
-        logging.info(f'Message buffer size: {len(self.messages)}')
+        logging.info(f'Proc: Message buffer size: {len(self.messages)}')
 
         if len(self.messages) == 0:
             raise HTTPException(
@@ -45,7 +45,7 @@ class message_buffer(message_processor):
         return self.messages.pop(0)
 
     def get_all_messages(self) -> List[MessageSummary]:
-        logging.info('Message buffer size: ', len(self.messages))
+        logging.info(f'Proc: Message buffer size: {len(self.messages)}')
 
         if len(self.messages) == 0:
             raise HTTPException(
